@@ -20,7 +20,7 @@ class ActivityFetcher {
     var activityDelegate: ActivityDelegate?
     
     
-    let urlString = "https://www.boredapi.com/api/activity/"
+    let urlString = "https://www.boredapi.com/activity/"
     
     func fetchRandomActivity() {
         
@@ -42,14 +42,14 @@ class ActivityFetcher {
                 let decoder = JSONDecoder()
                 if let data = data {
                     let activities = try? decoder.decode([Activity].self, from: data)
-                    if let randomQuote = activities?.first {
-                        delegate.activityFetched(activity: randomQuote)
+                    if let randomActivity = activities?.first {
+                        delegate.activityFetched(activity: randomActivity)
                     } else {
                         delegate.activityFetchError(because: ActivityError(message: "No activity returned"))
                     }
                     
                 } else {
-                    delegate.activityFetchError(because: ActivityError(message: "Unable to decode response from quote server"))
+                    delegate.activityFetchError(because: ActivityError(message: "Unable to decode response from activity server"))
                 }
                 
             }
