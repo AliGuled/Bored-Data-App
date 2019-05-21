@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol ActivityDelegate {
-    func activityFetched(activity: Activity)
-    func activityFetchError(because activityError: ActivityError)
+    func activityFetched(activity: Activity) -> Void
+    func activityFetchError(because activityError: ActivityError) -> Void
     
 }

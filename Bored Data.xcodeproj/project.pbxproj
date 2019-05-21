@@ -43,6 +43,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184482012291AD1B00E628D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18906099226E1574000B27A5 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184482022291AD3C00E628D8 /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				189060AC226E1880000B27A5 /* ActivityFetcher.swift */,
+			);
+			path = "API Services";
+			sourceTree = "<group>";
+		};
+		184482032291AD4800E628D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				189060AE226E18A7000B27A5 /* Activity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184482042291AD5100E628D8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				189060B0226E19CC000B27A5 /* ActivityDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		184482052291AD6000E628D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1890609B226E1574000B27A5 /* Main.storyboard */,
+				189060A3226E1575000B27A5 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184482062291AD7400E628D8 /* Supporting Flies */ = {
+			isa = PBXGroup;
+			children = (
+				18906097226E1574000B27A5 /* AppDelegate.swift */,
+				189060A1226E1575000B27A5 /* Assets.xcassets */,
+			);
+			path = "Supporting Flies";
+			sourceTree = "<group>";
+		};
 		1890608B226E1574000B27A5 = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +112,12 @@
 		18906096226E1574000B27A5 /* Bored Data */ = {
 			isa = PBXGroup;
 			children = (
-				18906097226E1574000B27A5 /* AppDelegate.swift */,
-				18906099226E1574000B27A5 /* ViewController.swift */,
-				189060AC226E1880000B27A5 /* ActivityFetcher.swift */,
-				189060AE226E18A7000B27A5 /* Activity.swift */,
-				189060B0226E19CC000B27A5 /* ActivityDelegate.swift */,
-				1890609B226E1574000B27A5 /* Main.storyboard */,
-				189060A1226E1575000B27A5 /* Assets.xcassets */,
-				189060A3226E1575000B27A5 /* LaunchScreen.storyboard */,
+				184482062291AD7400E628D8 /* Supporting Flies */,
+				184482012291AD1B00E628D8 /* Controller */,
+				184482022291AD3C00E628D8 /* API Services */,
+				184482032291AD4800E628D8 /* Model */,
+				184482042291AD5100E628D8 /* Protocol */,
+				184482052291AD6000E628D8 /* View */,
 				189060A6226E1575000B27A5 /* Info.plist */,
 				1890609E226E1574000B27A5 /* Bored_Data.xcdatamodeld */,
 			);

@@ -15,16 +15,27 @@ class ActivityError: Error {
     }
 }
 
-class ActivityFetcher {
+
+class ActivityFetcher: NSObject {
     
-    var activityDelegate: ActivityDelegate?
+    
+    var delegate:ActivityDelegate!
+    
+    init(delegate: ActivityDelegate) {
+        self.delegate = delegate
+    }
+
     
     
-    let urlString = "https://www.boredapi.com/activity/"
+   // let urlString = "https://www.boredapi.com/activity/activity?type=recreationalactivity?participants=1"
+    // let urlString = "https://www.boredapi.com/activity/activity?type=recreationalactivity?participants=1"
+    //let urlString = "https://www.boredapi.com/api/activity?type=recreational"
+    let urlString = "https://www.boredapi.com/api/activity/"
     
+    //Fetch
     func fetchRandomActivity() {
         
-        guard let delegate = activityDelegate else {
+        guard let delegate = delegate else {
             print("Warning -  no delegate set")
             return
         }
@@ -38,22 +49,20 @@ class ActivityFetcher {
             if let error = error {
                 delegate.activityFetchError(because: ActivityError(message: error.localizedDescription))
             }
-            if let activityData = data {
+            if let data = data {
                 let decoder = JSONDecoder()
-                if let data = data {
-                    let activities = try? decoder.decode([Activity].self, from: data)
-                    if let randomActivity = activities?.first {
-                        delegate.activityFetched(activity: randomActivity)
-                    } else {
-                        delegate.activityFetchError(because: ActivityError(message: "No activity returned"))
-                    }
+                
+                
+                do {
+                    let activities = try decoder.decode(Activity.self, from: data)
                     
-                } else {
-                    delegate.activityFetchError(because: ActivityError(message: "Unable to decode response from activity server"))
+                        delegate.activityFetched(activity: activities)
+                    
+                    } catch {
+                        delegate.activityFetchError(because: ActivityError(message: "No activity returned"))
                 }
                 
             }
-            
             
         })
         task.resume()

@@ -11,29 +11,39 @@ import CoreData
 
 class ViewController: UIViewController,ActivityDelegate {
     
+    //Activit
     @IBOutlet weak var activityTextView: UITextView!
     
-    let activityFetcher = ActivityFetcher()
+    //Subclass of ActivityFetcher
+    var fetch: ActivityFetcher!
+   
+
     
+    //Core Data context
     var managedContext: NSManagedObjectContext?
     
+    //Array of Activity Record
     var activityRecord: [ActivityRecord] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.activityFetcher.activityDelegate = self
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedContext = appDelegate?.persistentContainer.viewContext
+        
     }
     
+    //Fetching Activity
     @IBAction func fetchActivity(_ sender: UIButton) {
-        
-        activityFetcher.fetchRandomActivity()
-        
+       
+        if fetch != nil {
+            fetch.fetchRandomActivity()
+        }
     }
     
+
+    //Saving activity in core data
     @IBAction func saveActivity(_ sender: UIButton) {
-        var randomActivity: Activity?
+        var randomActivity: Activity!
         let activy = randomActivity
         let activity = ActivityRecord(context: managedContext!)
         
@@ -47,14 +57,17 @@ class ViewController: UIViewController,ActivityDelegate {
         
     }
     
+    //Display the activity in textview
     func activityFetched(activity: Activity) {
         
         DispatchQueue.main.async {
-            let quoteText = "\(activity.key)- \n\(activity.activity)"
-            self.activityTextView.text = quoteText
+            let activityText = "\(activity.activity)"
+            self.activityTextView.text = activityText
+            print("fetched")
         }
     }
     
+    //Responding if there is no activity found
     func activityFetchError(because activityError: ActivityError) {
         DispatchQueue.main.async {
             

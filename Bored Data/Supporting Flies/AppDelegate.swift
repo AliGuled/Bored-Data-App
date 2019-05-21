@@ -15,8 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+        [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let controller = window?.rootViewController as! ViewController
+        let activityFetcher = ActivityFetcher(delegate: controller) 
+         
+        activityFetcher.fetchRandomActivity()
+
+    
         return true
     }
 
